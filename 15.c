@@ -145,69 +145,75 @@ char* mul(char* a, char* b){
 	return ans;
 }
 
+int _plus(char* a, char* b){
+	if(a[0] == '-' && b[0] == '-'){
+		printf("-%s\n", plus(sabs(a), sabs(b)));
+	}else if(a[0] == '-'){
+		if(scmp(sabs(a), sabs(b)) == 1){
+			printf("-%s\n", minus(sabs(a), sabs(b)));
+		}else if(scmp(sabs(a), sabs(b)) == -1){
+			printf("%s\n", minus(sabs(b), sabs(a)));
+		}else{
+			printf("0\n");
+		}
+	}else if(b[0] == '-'){
+		if(scmp(sabs(a), sabs(b)) == 1){
+			printf("%s\n", minus(sabs(a), sabs(b)));
+		}else if(scmp(sabs(a), sabs(b)) == -1){
+			printf("-%s\n", minus(sabs(b), sabs(a)));
+		}else{
+			printf("0\n");
+		}
+	}else{
+		printf("%s\n", plus(a, b));
+	}
+}
+
+int _minus(char* a, char* b){
+	if(a[0] == '-' && b[0] == '-'){
+		if(scmp(sabs(a), sabs(b)) == 1){
+			printf("-%s\n", minus(sabs(a), sabs(b)));
+		}else if(scmp(sabs(a), sabs(b)) == -1){
+			printf("%s\n", minus(sabs(b), sabs(a)));
+		}else{
+			printf("0\n");
+		}
+	}else if(a[0] == '-'){
+		if(scmp(sabs(a), sabs(b)) == 1){
+			printf("-%s\n", plus(sabs(a), sabs(b)));
+		}else if(scmp(sabs(a), sabs(b)) == -1){
+			printf("-%s\n", plus(sabs(b), sabs(a)));
+		}else{
+			printf("0\n");
+		}
+	}else if(b[0] == '-'){
+		printf("%s\n", plus(sabs(a), sabs(b)));
+	}else{
+		if(scmp(sabs(a), sabs(b)) == 1){
+			printf("%s\n", minus(sabs(a), sabs(b)));
+		}else if(scmp(sabs(a), sabs(b)) == -1){
+			printf("-%s\n", minus(sabs(b), sabs(a)));
+		}else{
+			printf("0\n");
+		}
+	}
+}
+
+int _mul(char* a, char* b){
+	if(a[0] == '-' ^ b[0] == '-'){
+		printf("-%s", mul(sabs(a), sabs(b)));
+	}else{
+		printf("%s", mul(sabs(a), sabs(b)));
+	}
+} 
+
 
 int main(){
 	char* a = calloc(100, sizeof(char));
 	char* b = calloc(100, sizeof(char));
-	int oper = 0;
-	scanf("%d", &oper);
 	scanf("%s", a);
 	scanf("%s", b);
-	if(oper == 1){
-		if(a[0] == '-' && b[0] == '-'){
-			printf("-%s\n", plus(sabs(a), sabs(b)));
-		}else if(a[0] == '-'){
-			if(scmp(sabs(a), sabs(b)) == 1){
-				printf("-%s\n", minus(sabs(a), sabs(b)));
-			}else if(scmp(sabs(a), sabs(b)) == -1){
-				printf("%s\n", minus(sabs(b), sabs(a)));
-			}else{
-				printf("0");
-			}
-		}else if(b[0] == '-'){
-			if(scmp(sabs(a), sabs(b)) == 1){
-				printf("%s\n", minus(sabs(a), sabs(b)));
-			}else if(scmp(sabs(a), sabs(b)) == -1){
-				printf("-%s\n", minus(sabs(b), sabs(a)));
-			}else{
-				printf("0");
-			}
-		}else{
-			printf("%s\n", plus(a, b));
-		}
-	}else if(oper == 2){
-		if(a[0] == '-' && b[0] == '-'){
-			if(scmp(sabs(a), sabs(b)) == 1){
-				printf("-%s\n", minus(sabs(a), sabs(b)));
-			}else if(scmp(sabs(a), sabs(b)) == -1){
-				printf("%s\n", minus(sabs(b), sabs(a)));
-			}else{
-				printf("0");
-			}
-		}else if(a[0] == '-'){
-			if(scmp(sabs(a), sabs(b)) == 1){
-				printf("%s\n", minus(sabs(a), sabs(b)));
-			}else if(scmp(sabs(a), sabs(b)) == -1){
-				printf("-%s\n", minus(sabs(b), sabs(a)));
-			}else{
-				printf("0");
-			}
-		}else if(b[0] == '-'){
-			printf("%s\n", plus(sabs(a), sabs(b)));
-		}else{
-			if(scmp(sabs(a), sabs(b)) == 1){
-				printf("%s\n", minus(sabs(a), sabs(b)));
-			}else if(scmp(sabs(a), sabs(b)) == -1){
-				printf("-%s\n", minus(sabs(b), sabs(a)));
-			}else{
-				printf("0");
-			}
-		}
-	}else if(oper == 3){
-		if(a[0] == '-' || b[0] == '-'){
-			printf("-%s", mul(a, b));
-		}else{
-			printf("%s", mul(a, b));
-		}
-	}
+	_plus(a, b);
+	_minus(a, b);
+	_mul(a, b); 
 } 
